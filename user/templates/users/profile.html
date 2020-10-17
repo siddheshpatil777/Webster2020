@@ -188,7 +188,7 @@
 </head>
 
 <!-- indigo lighten-5 -->
-<body class="">
+<body class=" blue-grey darken-4">
 
     <!-- parallax -->
 
@@ -196,7 +196,7 @@
         <div class="parallax-container">
             <nav class="nav-wrapper transparent">
                 <div class=" black-text">
-                    <a href="{% url 'blog-home' %}" class="center brand-logo black-text">Motiopolis</a>
+                    <a href="{% url 'blog-home' %}" class="center brand-logo black-text">Twaatch</a>
                     <a href="" class="sidenav-trigger" data-target="mobile-menu">
                         <i class="material-icons">menu</i>
                     </a>
@@ -224,7 +224,7 @@
                 }
             </style>
             <div class="parallax">
-                <img src="{% static 'sn.jpg' %}" alt="" class="responsive-img">
+                <img src="{% static 'csgo.jpg' %}" alt="" class="responsive-img">
             </div>
         </div>
     </div>
@@ -392,10 +392,10 @@
     </div>
 
 
-    <div id="coolButton">
+    <!-- <div id="coolButton">
         <a id="menu" class="waves-effect waves-light btn btn-floating"><i class="material-icons">menu</i></a>
 
-        <!-- Tap Target Structure -->
+       
         <div id="fd" class="tap-target blue lighten-2" data-target="menu">
             <div class="tap-target-content ">
                 <h5>Want to show </h5>
@@ -405,7 +405,7 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
     {% if user.is_authenticated %}
     {% if userd == user %}
 
