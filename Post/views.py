@@ -12,26 +12,13 @@ from .models import Post, Comment ,Poll ,PollChoice
 from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect, JsonResponse,HttpResponse
 from Tag.models import Tag
-from .forms import PollForm,PollChoiceFormset,PostCreateFrom,GroupPostCreateForm,SearchForm,PostUpdateFrom
+from .forms import PollForm,PollChoiceFormset,PostCreateFrom,GroupPostCreateForm,SearchForm,PostUpdateFrom,VideoCreateForm
 from Group.models import Group,Channel
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 
-# class PostListView(ListView):
-#     model = Post
-#     template_name = 'Post/home.html'  # <app>/<model>_<viewtype>.html
-#     context_object_name = 'posts'
-#     ordering = ['-date_posted']
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['tags'] = Tag.objects.all
-#         context['groups'] = Group.objects.all
-#         context['posts'] = Post.objects.filter(grouppost__isnull=True).annotate(like_count=Count('likers')).order_by('-like_count')
-#
-#         return context
 official_tag=['official','avishkar','freshers']
 
 def PostListView(request):
@@ -79,6 +66,7 @@ class PostDetailView(LoginRequiredMixin,DetailView):
         options = PollChoice.objects.filter(poll=self.object)
         uchoice = ''
         total = 0
+        # print(self.object.type)
         for index, op in enumerate(options):
             total = total + op.voters.count()
             if self.request.user in op.voters.all():
@@ -94,19 +82,25 @@ class PostDetailView(LoginRequiredMixin,DetailView):
         return context
 
 
-
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    form_class = PostCreateFrom
-
-    def get_form_kwargs(self):
-        kwargs=super().get_form_kwargs()
-        kwargs.update({'user':self.request.user})
-        return kwargs
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+def postcreate(request,type):
+    # print(type)
+    if(request.method=='POST'):
+        if type=='0':
+            form =PostCreateFrom(request.POST,user=request.user)
+        else:
+            form = VideoCreateForm(request.POST,request.FILES,user=request.user)
+        if(form.is_valid()):
+            form.instance.author=request.user
+            form.instance.type=type
+            form.save()
+            return redirect('blog-home')
+    else:
+        if type=='0':
+            form=PostCreateFrom(user=request.user)
+        else:
+            form=VideoCreateForm(user=request.user)
+    context={'form':form}
+    return render(request, 'Post/post_form.html', context)
 
 @login_required
 def GroupPostCreateView(request,channel,slug):

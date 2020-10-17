@@ -14,6 +14,7 @@ class Post(models.Model):
 	views = models.ManyToManyField(User, related_name='post_views', blank = True)
 	likers = models.ManyToManyField(User, related_name = 'likers', blank = True)
 	tags = models.ManyToManyField(Tag, related_name = 'tags', blank = True)
+	type = models.IntegerField(default=0)
 
 	def get_absolute_url(self):
 		return reverse('post-detail', kwargs = {'pk':self.pk})
@@ -48,3 +49,6 @@ class PollChoice(models.Model):
 
 	def __str__(self):
 		return self.poll.title + self.option
+
+class VideoPost(Post):
+	video=models.FileField(upload_to='videos/')

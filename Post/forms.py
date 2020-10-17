@@ -2,7 +2,7 @@ from django import forms
 from .models import GroupPost
 from Tag.models import Tag
 from django.forms import formset_factory,modelformset_factory
-from .models import Poll,PollChoice,Post
+from .models import Poll,PollChoice,Post,VideoPost
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
 official_tag=['official','avishkar','freshers']
@@ -72,3 +72,17 @@ class GroupPostCreateForm(forms.ModelForm):
 class SearchForm(forms.Form):
 
 	SearchTerm = forms.CharField(required = True)
+
+class VideoCreateForm(forms.ModelForm):
+	class Meta:
+		model = VideoPost
+		fields = ['title', 'tags', 'content','video']
+		widgets = {
+			'content': SummernoteWidget(),
+		}
+
+	def __init__(self, *args, **kwargs):
+		users = kwargs.pop('user', None)
+		super().__init__(*args, **kwargs)
+		if not users.is_superuser:
+			self.fields['tags'].queryset = Tag.objects.exclude(name__in=official_tag)

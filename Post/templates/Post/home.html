@@ -31,7 +31,9 @@
 					{% if user.is_authenticated%}
 					<a  class="btn btn-large amber indigo-text text-darken-4 center  waves-effect waves-light">  Create </a>
 					<br>
-					<a href="{% url 'post-create' %} " class="btn btn-large amber indigo-text text-darken-4 center  waves-effect waves-light">   Posts! </a>
+					<a href="{% url 'post-create' type=0%} " class="btn btn-large amber indigo-text text-darken-4 center  waves-effect waves-light">   Posts! </a>
+					<br>
+					<a href="{% url 'post-create' type=1%} " class="btn btn-large amber indigo-text text-darken-4 center  waves-effect waves-light">   Video! </a>
 					<br>
 					<a href="{% url 'poll_create' %} " class="btn btn-large amber 	indigo-text text-darken-4 center  waves-effect waves-light">    Polls! </a>
 					<br>
