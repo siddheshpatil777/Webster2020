@@ -19,6 +19,8 @@
                     color:#d50000;
                 }
             </style>
+            
+            
             <ul class="left hide-on-med-and-down  ">
                 <li><a href="{% url 'blog-home' %}" class="nav-tag" >Home</a></li>
 
@@ -38,6 +40,8 @@
                         <i class="large material-icons indigo-text text-darken-4">notifications</i>
                     </a></li>
                 <li><span class="badge white-text new pink">5</span></li> -->
+                
+               <li> 42069<i class="left material-icons right yellow-text">attach_money</i></li>
                 <li><a href="{% url 'profile' slug=user.username %}" class="nav-tag"> {{user.username }}</a></li>
                 <li><a class="btn white indigo-text waves-effect waves-light" href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
