@@ -52,6 +52,12 @@ def profile(request,slug):
 		'slug':slug
 		}
 	context['posts'] = Post.objects.filter(author__username = slug,grouppost__isnull=True)#getting post which user made publicily
+	
+	following= userd.profile.followings.all()
+	context['following']=following
+	follower = userd.profile.followers.all()
+	context['followers'] = follower
+
 	return render(request, 'users/profile.html', context)
 
 @login_required

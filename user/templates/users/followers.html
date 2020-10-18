@@ -1,0 +1,19 @@
+{%  extends "base.html" %}
+
+{% block content %}
+   <div class="container">
+    {% for user in followers %}
+
+   <ul>
+       <li>
+        <div class="chip">
+            <img src="{{ user.profile.image.url }}" alt="Contact Person">
+            {{ user.username}}
+          </div>
+       </li>
+   </ul>
+          
+
+      {% endfor %}
+   </div>
+{% endblock content %}
