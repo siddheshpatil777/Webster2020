@@ -57,9 +57,30 @@ def profile(request,slug):
 @login_required
 def notification(request):
 	context={}
-	print(datetime.now())
-	print(request.user.profile.notif)
+	# print(datetime.now())
+	# print(request.user.profile.notif)
 	context['posts'] = Post.objects.filter(date_posted__gte=request.user.profile.notif, grouppost__isnull=True)
 	request.user.profile.notif=timezone.now()
 	request.user.profile.save()
 	return render(request,'users/notifications.html', context)
+
+def test(request):
+	context={}
+	follows_users = request.user.profile.followings.all()
+	post = Post.objects.filter(author_id__in=follows_users)
+	context['post']=post
+	return render(request,'users/test.html',context)
+
+def following(request,user):
+	user=User.objects.filter(username=user).first()
+	context={}
+	following= user.profile.followings.all()
+	context['following']=following
+	return render(request,'users/following.html',context)
+
+def followers(request,user):
+	context = {}
+	user = User.objects.filter(username=user).first()
+	follower = user.profile.followers.all()
+	context['followers'] = follower
+	return render(request, 'users/followers.html', context)

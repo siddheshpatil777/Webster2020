@@ -77,9 +77,9 @@
                     <p> Views: {{object.views.count}} </p>
                     {% include "Post/poll_detail.html" %}
 
-                    {% if object.type == 1%}
+                      {% if object.type == 1%}
                     <video id="intro" type="video/mp4" controls preload autoplay>
-                     <source src="{{ object.video.url }}" type="video/mp4">
+                     <source src="{{ vpost.video.url }}" type="video/mp4">
                     </video>
                     {% endif %}
                 </div>

@@ -8,7 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post, Comment ,Poll ,PollChoice
+from .models import Post, Comment ,Poll ,PollChoice, VideoPost
 from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect, JsonResponse,HttpResponse
 from Tag.models import Tag
@@ -17,6 +17,7 @@ from Group.models import Group,Channel
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+
 
 
 official_tag=['official','avishkar','freshers']
@@ -66,13 +67,18 @@ class PostDetailView(LoginRequiredMixin,DetailView):
         options = PollChoice.objects.filter(poll=self.object)
         uchoice = ''
         total = 0
-        # print(self.object.type)
+
+        vpost = VideoPost.objects.filter(id=post.id).first
+
+        # print(vpost[0].video.url)
+
         for index, op in enumerate(options):
             total = total + op.voters.count()
             if self.request.user in op.voters.all():
                 uchoice=op
         context['uchoice']=uchoice
         context['total']=total
+        context['vpost']=vpost
         context['options']=options
         context['poll']=self.object
         context['comments'] = Comment.objects.filter(post = self.object)
@@ -80,7 +86,6 @@ class PostDetailView(LoginRequiredMixin,DetailView):
         context['post']  = post
         context['tags'] = post.tags.all
         return context
-
 
 def postcreate(request,type):
     # print(type)

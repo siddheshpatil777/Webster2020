@@ -284,6 +284,8 @@
                         {% if userd == user %}
                         <span><a href="#exampleModal" class="btn btn-large orange modal-trigger"> Edit</a></span>
                         {% endif %}
+                        <span><a href="{%url 'followers' user=userd%}" class="btn btn-large orange modal-trigger"> Followers</a></span>
+                        <span><a href="{%url 'following' user=userd%}" class="btn btn-large orange modal-trigger"> Followings</a></span>
                         {% endif %}
                         <!-- </div>
                         </div> -->
