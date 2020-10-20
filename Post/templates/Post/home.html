@@ -1,14 +1,12 @@
-{%  extends "base.html" %}
-{% load static %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <!-- <div class="container"> -->
 {% include 'Post/homePageMembers/homePageParallax.html' %}
-<div class="row ">
-	<div class="col s12 m3 l2 offset-l1 ">
+<div class="row">
+	<div class="col s12 m3 l2 offset-l1">
 		{% include 'Post/homePageMembers/leftCreateBar.html' %}
 	</div>
 
-	<div id="postCalone" class="col s12 m6 ">
+	<div id="postCalone" class="col s12 m6">
 		<ul class="row tabs">
 			<li class="tab col s4">
 				<a href="#recentPosts" class="active indigo-text text-darken-4">
@@ -18,9 +16,7 @@
 			<li class="tab col s4">
 				<a href="#searchPosts" class="indigo-text text-darken-4">
 					Search Posts
-
 				</a>
-
 			</li>
 			<li class="tab col s4">
 				<a href="#announcements" class="indigo-text text-darken-4">
@@ -35,56 +31,47 @@
 		<div id="searchPosts" class="col s12">
 			<!-- <h2 class="active indigo-text text-darken-4">Search Posts</h2> -->
 			<h2>Search</h2>
-			<div id="search"> {% include 'Post/searchresults.html' %} </div>
+			<div id="search">{% include 'Post/searchresults.html' %}</div>
 		</div>
 		<div id="announcements" class="col s12">
 			<!-- <h2 class="active indigo-text text-darken-4">Search Posts</h2> -->
 
 			{% include 'Post/homePageMembers/announcements.html' %}
-
 		</div>
-
 	</div>
-	<div class="col s12 m3 l3 ">
-
+	<div class="col s12 m3 l3">
 		{% include 'Post/homePageMembers/rightSideBar.html' %}
-
 	</div>
 </div>
 <script type="text/javascript">
 	// $('.materialboxed').materialbox('onOpenStart', function () {
 	// 		$('.card').fadeOut();
 	// });
-	$('bodt').addClass('grey');
+	$("bodt").addClass("grey");
 </script>
 
-{% endblock content %}
-
-{% block js %}
+{% endblock content %} {% block js %}
 <script type="text/javascript">
 	$(document).ready(function (event) {
-		$(document).on('click', '#searchterm', function (event) {
-
+		$(document).on("click", "#searchterm", function (event) {
 			var searchterm = $("#searchcontent").val();
 
-
 			$.ajax({
-				type: 'POST',
+				type: "POST",
 				url: '{% url "search" %}',
 				data: {
-					'searchterm': searchterm,
-					'csrfmiddlewaretoken': '{{csrf_token}}'
+					searchterm: searchterm,
+					csrfmiddlewaretoken: "{{csrf_token}}",
 				},
 				success: function (response) {
-					$('#search').html(response['form'])
+					$("#search").html(response["form"]);
 					console.log(searchterm);
 					// $("#love").addClass("red-text");
 				},
 				error: function (rs, e) {
 					console.log(rs.responseText);
-				}
+				},
 			});
-
 		});
 	});
 </script>

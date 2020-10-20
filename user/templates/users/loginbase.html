@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" type="text/css" href="/static/login.css">
+        <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'> -->
+</head>
+
+<body>
+    <div class="container">
+        <h2>Welcome To Twaatch</h2>
+        <div class="form-container">
+            <form method="POST">
+                <input type="hidden" name="csrfmiddlewaretoken"
+                    value="29sQFKw18t3rSFJhVYNhUZ9zMJFZUPCfVWh34fN8oQZDVHRi6TgPbQ4RY4yAMwAh">
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4"> Login </legend>
+                    <p><label for="id_username">Username:</label> <input type="text" name="username" autofocus
+                            autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username"></p>
+                    <p><label for="id_password">Password:</label> <input type="password" name="password"
+                            autocomplete="current-password" required id="id_password"></p>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit"> Log In </button>
+                </div>
+            </form>
+            <a href="/password-reset/">
+                <button class="btn btn-small"> Forget Password </button></a>
+        </div>
+    </div>
+</body>
+
+</html>
