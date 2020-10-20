@@ -1,4 +1,10 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} 
+{% load static %} 
+{% block navBar %}
+{% include 'snippets/mainNav.html' %}
+{% endblock  %}
+
+{% block content %}
 <!-- <div class="container"> -->
 {% include 'Post/homePageMembers/homePageParallax.html' %}
 <div class="row">

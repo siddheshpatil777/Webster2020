@@ -1,6 +1,9 @@
-{%  extends "base.html" %}
+{%  extends "users/FORMBASE.html" %}
 {% load crispy_forms_tags %}
 
+{% block navBar %}
+{% include 'snippets/mainNav.html' %}
+{% endblock  %}
 {% block content %}
 <style media="screen">
     #logoutMessage{
@@ -16,4 +19,4 @@
 
 
 </div>
-{% endblock content %}
+{% endblock  %}

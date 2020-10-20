@@ -1,7 +1,13 @@
-{%  extends "base.html" %}
+{%  extends "users/FORMBASE.html" %}
+
 {% load crispy_forms_tags %}
 {% load materializecss %}
+
+{% block navBar %}
+{% include 'users/formNav.html' %}
+{% endblock  %}
 {% block content %}
+
 <div class="container">
     <h2>Welcome To Twaatch</h2>
     <div class="form-container">
@@ -20,4 +26,4 @@
     </div>
 </div>
 
-{% endblock content %}
+{% endblock  %}
