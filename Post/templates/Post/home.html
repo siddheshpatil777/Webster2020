@@ -13,7 +13,7 @@
 	</div>
 
 	<div id="postCalone" class="col s12 m6">
-		<ul class="row tabs">
+		<ul class=" tabs">
 			<li class="tab col s4">
 				<a href="#recentPosts" class="active indigo-text text-darken-4">
 					Recent Posts
@@ -30,7 +30,7 @@
 				</a>
 			</li>
 		</ul>
-
+		
 		<div id="recentPosts" class="col s12">
 			{% include 'Post/homePageMembers/recentPosts.html' %}
 		</div>
@@ -56,7 +56,8 @@
 	$("bodt").addClass("grey");
 </script>
 
-{% endblock content %} {% block js %}
+{% endblock content %}
+ {% block js %}
 <script type="text/javascript">
 	$(document).ready(function (event) {
 		$(document).on("click", "#searchterm", function (event) {
