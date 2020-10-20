@@ -1,0 +1,21 @@
+<h2>announcements</h2>
+			{% for post in aposts %}brown
+			{% include 'snippets/postCardHome.html' %}
+			{% endfor %}
+			<div class="pagination">
+				<span class="step-links">
+					{% if aposts.has_previous %}
+					<a href="?page=1">&laquo; first</a>
+					<a href="?page={{ aposts.previous_page_number }}">previous</a>
+					{% endif %}
+
+					<span class="current">
+						Page {{ aposts.number }} of {{ aposts.paginator.num_pages }}.
+					</span>
+
+					{% if aposts.has_next %}
+					<a href="?page={{ aposts.next_page_number }}">next</a>
+					<a href="?page={{ aposts.paginator.num_pages }}">last &raquo;</a>
+					{% endif %}
+				</span>
+			</div>
