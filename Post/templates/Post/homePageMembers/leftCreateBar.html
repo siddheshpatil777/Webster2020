@@ -1,19 +1,19 @@
-<div class="card">
+<div class="card blackShade2">
     <div class="card-content">
         <br>
         <div class="center">
             {% if user.is_authenticated%}
             <a class="btn btn-large amber indigo-text text-darken-4 center  waves-effect waves-light"> Create
             </a>
-            <br>
+            <div class="divider"></div>
             <a href="{% url 'post-create' type=0%} "
                 class="btn btn-large amber indigo-text text-darken-4 center  waves-effect waves-light"> Posts!
             </a>
-            <br>
+            <div class="divider"></div>
             <a href="{% url 'post-create' type=1%} "
                 class="btn btn-large amber indigo-text text-darken-4 center  waves-effect waves-light"> Video!
             </a>
-            <br>
+            <div class="divider"></div>
             <a href="{% url 'poll_create' %} "
                 class="btn btn-large amber 	indigo-text text-darken-4 center  waves-effect waves-light"> Polls!
             </a>
@@ -23,9 +23,12 @@
             </a>
             <br>
             {% endif %}
-            <div class="divider">
-
+            <div class="divider"></div>
+            <!-- <div class=" container waves-effect waves-light">
+                
+                <p class="flow-text">adsadasd</p>
             </div>
+            <div class="divider"></div> -->
         </div>
 
     </div>

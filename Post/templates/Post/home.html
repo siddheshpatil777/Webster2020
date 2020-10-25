@@ -7,25 +7,26 @@
 {% block content %}
 <!-- <div class="container"> -->
 {% include 'Post/homePageMembers/homePageParallax.html' %}
+
 <div class="row">
-	<div class="col s12 m3 l2 offset-l1">
+	<div class="col s12 m3 l2 offset-l1 ">
 		{% include 'Post/homePageMembers/leftCreateBar.html' %}
 	</div>
 
-	<div id="postCalone" class="col s12 m6">
-		<ul class=" tabs">
-			<li class="tab col s4">
-				<a href="#recentPosts" class="active indigo-text text-darken-4">
+	<div id="postCalone" class="col s12 m6" >
+		<ul class="blackShade2 tabs">
+			<li class=" tab col s4">
+				<a href="#recentPosts" class="active ">
 					Recent Posts
 				</a>
 			</li>
 			<li class="tab col s4">
-				<a href="#searchPosts" class="indigo-text text-darken-4">
+				<a href="#searchPosts" class="">
 					Search Posts
 				</a>
 			</li>
 			<li class="tab col s4">
-				<a href="#announcements" class="indigo-text text-darken-4">
+				<a href="#announcements" class="">
 					announcements
 				</a>
 			</li>
@@ -45,7 +46,7 @@
 			{% include 'Post/homePageMembers/announcements.html' %}
 		</div>
 	</div>
-	<div class="col s12 m3 l3">
+	<div class=" col s12 m3 l3">
 		{% include 'Post/homePageMembers/rightSideBar.html' %}
 	</div>
 </div>
