@@ -17,7 +17,7 @@ $(document).ready(function () {
     $('.tap-target').tapTarget();
 
     $('.tabs').tabs();
-    $(".dropdown-trigger").dropdown();
+    // $(".dropdown-trigger").dropdown();
         
    
         
