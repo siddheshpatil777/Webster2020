@@ -3,7 +3,7 @@
 }
 
 .baap {
-    z-index: 1000;
+    /* z-index: 9990; */
 }
 
 .my {
@@ -13,7 +13,7 @@
 
 .pp {
     max-width: 180px;
-    z-index: 1000;
+    /* z-index: 1000; */
     position: relative;
     /* top:49%; */
     /* top: -100; */
@@ -51,7 +51,7 @@
 }
 
 .circular--landscape {
-    margin: 4vh;
+    /* margin-right: 8vh; */
     display: inline-block;
     position: relative;
     max-width: 40vh;
@@ -71,11 +71,12 @@
 
 .goUp {
     transform: translateY(-20vh);
+
 }
 
 @media screen and (max-width: 670px) {
     header {
-        /* min-height: 500px; */
+       
     }
 
     .circular--portrait {
@@ -95,7 +96,7 @@
         position: relative;
         max-width: 60vh;
         max-height: 60vh;
-        /* width: 200px; */
+       
         height: 60vh;
         overflow: hidden;
         border-radius: 50%;
@@ -105,7 +106,7 @@
 
         width: auto;
         height: 100%;
-        /* margin-left: -50px; */
+       
     }
 
     .goUp {
@@ -123,11 +124,11 @@
     overflow-y: scroll;
 }
 
-/* html,body{
+html,body{
     max-height: 800px !important;
     overflow-y: hidden;
 
-} */
+}
 .tabs .indicator {
     background-color: #1a237e;
 }
@@ -138,7 +139,7 @@
 }
 
 .fixed-action-btn {
-    z-index: 1000;
+    /* z-index: 1000; */
 }
 
 #coolButton {
@@ -149,9 +150,9 @@
 
 }
 
-#menu {
+/* #menu {
     transform: scale(2.0);
-}
+} */
 
 #username {
     text-transform: capitalize;

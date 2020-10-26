@@ -17,7 +17,10 @@ $(document).ready(function () {
     $('.tap-target').tapTarget();
 
     $('.tabs').tabs();
-
+    $(".dropdown-trigger").dropdown();
+        
+   
+        
 
     $('#menu').on('click', function () {
         var instance = M.TapTarget.getInstance(document.getElementById('fd'));
