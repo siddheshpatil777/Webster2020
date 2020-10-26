@@ -7,13 +7,38 @@
 {% block content %}
 <!-- <div class="container"> -->
 {% include 'Post/homePageMembers/homePageParallax.html' %}
-
+<style>
+	.thinText{
+		font-weight: 160;
+	}
+	#leftBar{
+		height:98vh;
+	}
+	#postCalone{
+		max-height:98vh !important;
+		overflow-y: scroll;
+	}
+	@media screen and (max-width: 670px) {
+		#postCalone{
+		max-height:98vh !important;
+		overflow-y: scroll;
+	}
+	}
+	
+</style>
 <div class="row">
-	<div class="col s12 m3 l2 offset-l1 ">
-		{% include 'Post/homePageMembers/leftCreateBar.html' %}
+	<div id="leftBar" class="blackShade2 col s12 m3 l3" ">
+		<!-- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos nobis aliquam ipsam placeat optio quia consequatur a minima incidunt temporibus voluptates autem repellendus repudiandae, et, earum minus consectetur voluptas animi. -->
+		<div class="row">
+			<div class=" col s12 m9 offset-m3  ">
+				
+				{% include 'Post/homePageMembers/leftCreateBar.html' %}
+			</div>
+		</div>
 	</div>
+	
 
-	<div id="postCalone" class="col s12 m6" >
+	<div id="postCalone" class="col s12 m6 " >
 		<ul class="blackShade2 tabs">
 			<li class=" tab col s4">
 				<a href="#recentPosts" class="active ">
@@ -37,11 +62,11 @@
 		</div>
 		<div id="searchPosts" class="col s12">
 			<!-- <h2 class="active indigo-text text-darken-4">Search Posts</h2> -->
-			<h2>Search</h2>
+			<h2 class= "white-text thinText">Search</h2>
 			<div id="search">{% include 'Post/searchresults.html' %}</div>
 		</div>
 		<div id="announcements" class="col s12">
-			<!-- <h2 class="active indigo-text text-darken-4">Search Posts</h2> -->
+			<h2 class="white-text thinText">Announcements</h2>
 
 			{% include 'Post/homePageMembers/announcements.html' %}
 		</div>

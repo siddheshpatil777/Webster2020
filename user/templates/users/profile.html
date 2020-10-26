@@ -12,6 +12,7 @@
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     {% include 'snippets/requirements/materializeCSSReq.html' %}
+    {% include 'snippets/importantShades.html' %}
 
     <title>ProfilePage</title>
 
@@ -21,51 +22,26 @@
 
 <!-- indigo lighten-5 -->
 
-<body class=" " style="background-color: #070707ff;">
+<body class="blackShade3">
 
     <!-- parallax -->
     {% include 'users/profilePageMembers/profilePageParallax.html'%}
     <!-- services / tabs -->
-    <div class="container my ">
+    <div class="blackShade2 container my ">
         <div class="row">
-            <div class="col s12 l4 goUp baap">
+            <div class="col s12 l4  goup">
                 <div class="row">
-                    <div class="col s12 l12  ">
-                        <!-- <a href="" class="halfway-fab btn-floating pink pulse">
-                            <i class="material-icons">favorite</i>
-                        </a> -->
-                        <div class="container center">
-                            <div class="circular--landscape">
-                                <img src="{{userd.profile.image.url}}" class="materialboxed" alt="">
+                    <div class=" col s12">
+                        <div class=" container center">
+                            <div class="circular--landscape ">
+                                <img src="{{userd.profile.image.url}}" class="" alt="">
                             </div>
-
-                            <!-- <div class="row">
-                                <div class="col s6 l6">
-                                        <h5 class="grey-text">Followers</h5>
-                                </div>
-                                <div class="col s6 l6">
-                                    <h5 class="grey-text">Following
-                                    </h5>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col s6 l6">
-                                    <p class="deep-purple-text text-darken-4">69</p>
-                                </div>
-                                <div class="col s6 l6">
-                                <p class="deep-purple-text text-darken-4">69</p>
-                                </div>
-                            </div> -->
                             <div class="divider"></div>
-
                         </div>
-
-
-
                     </div>
                     <div class="divider"></div>
-
+                </div>
+                <div class="row">
                     <div class="col s12 l12 ">
                         <!-- <div class="card ">
                             <div class="card-content"> -->
@@ -104,7 +80,8 @@
 
 
             </div>
-            <div class="col s12 l8  ">
+            <div class=" blackShade1 col s12 l8  ">
+                
                 <div class="row">
                     <div class="col s12 l12">
                         <h2 id="username" class="left ">{{ userd.first_name }} {{userd.last_name}}</h2>
@@ -122,15 +99,15 @@
                         <h3> Posts </h3>
                         {% endif %}
                     </div>
-                    <div id="postCalone" class="col s12 l12">
 
-                        {% for post in posts %}
-                        {% include 'snippets/postCards/postCardMini.html' %}
-                        {% endfor %}
-                        {% else %}
-                        <h3>No posts yet</h3>
-                        {% endif %}
-                    </div>
+                    {% for post in posts %}
+
+                    {% include 'snippets/postCards/postCardMini.html'%}
+                    {% endfor %}
+                    {% else %}
+                    <h3>No posts yet</h3>
+                    {% endif %}
+
                 </div>
 
             </div>
@@ -142,7 +119,7 @@
 
     {% include 'users/profilePageMembers/profileEditModal.html'%}
     {% include 'users/profilePageMembers/followersFollowingModal.html'%}
-    </div>
+    
 
 
     {% include 'users/profilePageMembers/coolButton.html'%}
@@ -160,6 +137,7 @@
     <script src="{% static 'materialize.min.js' %}"></script>
 
     <script src="{% static 'materializeInit.js' %}"></script>
+   
 </body>
 
 </html>
