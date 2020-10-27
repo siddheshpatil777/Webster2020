@@ -11,69 +11,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <link rel="stylesheet" href="{% static 'materialize.min.css' %}">
-
-    {% if title %}
-    <title> TWAATCH- {{title}}</title>
-    {% else %}
     <title> TWAATCH </title>
-    {% endif %}
-    <style>
-        /* body,html{
-            overflow-x:auto;
-        } */
-        nav .badge {
-            position: relative;
-            top: 20px;
-            right: 20px;
-        }
-    </style>
     {% include 'snippets/importantShades.html' %}
+   
 
 </head>
 {% include 'snippets/sitePreLoader.html' %}
-<body class="" style="background-color: rgb(47,47,58);">
-     <!-- indigo lighten-5 -->
-     {% block navBar %}
+<body class="" >
+   
+
+
+  
     
-     {% endblock  %}
-       
-    <!-- <div class="row">
-        <div class="col s10 offset-s1"> -->
-            {%block new%}
-            {%endblock%}
+        {% block content %}
+        {% endblock %}
+   
 
+    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'materialize.min.js' %}"></script>
 
-            <div id="slide-out" class="sidenav">
-                {% for post in notifications %}
-                <div class="row">
-                    <div class="col s12 l12">
-                         {% include 'snippets/postCard.html' %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-
-            {% block content %}
-            {% endblock %}
-
-
-            <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
-            <script src="{% static 'materialize.min.js' %}"></script>
-            {%block js%}
-            {%endblock%}
-        <!-- </div>
-    </div> -->
 
 </body>
 
 
 <script type="text/javascript">
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         $('.myLoader-wrapper').fadeOut("slow");
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $('.sidenav').sidenav();
         $('.materialboxed').materialbox();
