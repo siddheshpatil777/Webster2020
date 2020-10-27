@@ -1,11 +1,53 @@
 {% load static %}
 <style media="screen">
+	.con{
+		height: 46vh;
+	}
 	.parallax-container {
 		height: 46vh;
 	}
+	.slides li img {
+	background-attachment: fixed;
+	}
 </style>
 <div class="parallax-container">
+
 	<div class="parallax">
-		<img src="{% static 'csgo.jpg' %}" alt="" class="responsive-img">
+		<!-- <div class="slider">
+			<ul class="slides">
+				<li><img src="{% static 'csgo.jpg' %}" alt="" class="responsive-img"></li>
+
+				<li><img src="{% static 'csgo.jpg' %}" alt="" class="responsive-img"></li>
+
+			</ul>
+		</div> -->
+		<div class=" carousel carousel-slider">
+			<a class="carousel-item" href="#one!"><img src="{% static 'csgo.jpg' %}" alt="" class="responsive-img"></a>
+			<a class="carousel-item" href="#two!"><img src="{% static 'csgo.jpg' %}" alt="" class="responsive-img"></a>
+			<a class="carousel-item" href="#three!"><img src="{% static 'csgo.jpg' %}" alt="" class="responsive-img"></a>
+			<a class="carousel-item" href="#four!"><img src="{% static 'csgo.jpg' %}" alt="" class="responsive-img"></a>
+		</div>
+		</div>
+
+
 	</div>
-</div>
+
+<!-- <div class="slider">
+	<ul class="slides">
+		  <li>
+			<img src="{% static 'csgo.jpg' %}">
+			<div class="caption center-align brown-text text-darken-2">
+				  <h3>This is our big Tagline!</h3>
+				  <h5 class="light grey-text text-darken-2">Here's our small slogan.</h5>
+			</div>
+		  </li>
+			  
+		  <li>
+			<img src="{% static 'csgo.jpg' %}">
+			<div class="caption center-align blue-grey-text text-darken-4">
+				  <h3>This is our big Tagline!</h3>
+				  <h5 class="light blue-grey-text text-darken-4">Here's our small slogan.</h5>
+			</div>
+		  </li>    		
+		</ul>
+  </div> -->
