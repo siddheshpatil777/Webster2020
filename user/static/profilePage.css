@@ -73,7 +73,7 @@
     transform: translateY(-20vh);
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 600px) {
     header {
         /* min-height: 500px; */
     }
