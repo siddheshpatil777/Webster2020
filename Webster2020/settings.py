@@ -17,6 +17,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMP_DIR_user = os.path.join(BASE_DIR,'user/templates')
 TEMP_DIR_Post = os.path.join(BASE_DIR,'Post/templates')
 TEMP_DIR_Group = os.path.join(BASE_DIR,'Group/templates')
+TEMP_DIR_Report = os.path.join(BASE_DIR,'Report/templates')
+TEMP_DIR_Chat = os.path.join(BASE_DIR,'Chat/templates')
 TEMP_DIR = os.path.join(BASE_DIR,'templates')
 
 # Quick-start development settings - unsuitable for production
@@ -46,6 +48,8 @@ INSTALLED_APPS = [
     'Post',
     'Tag',
     'Group',
+    'Chat',
+    'Report',
     'django_summernote',
     'materializecssform',
 
@@ -70,6 +74,8 @@ TEMPLATES = [
         TEMP_DIR_user,
         TEMP_DIR_Post,
         TEMP_DIR_Group,
+                 TEMP_DIR_Chat,
+                 TEMP_DIR_Report,
         ],
         'APP_DIRS': True,
         'OPTIONS': {
