@@ -25,9 +25,9 @@
                 <li><a href="{% url 'blog-home' %}" class="nav-tag" >Home</a></li>
 
                 <li><a href="{% url 'group-list' %}" class="nav-tag" >Groups</a></li>
-
-                <li><a href="#mainFooter" class="nav-tag" >Contact</a></li>
-
+                {%if user.profile.moderator%}
+                <li><a href="{%url 'report-list'%}" class="nav-tag" >Reports</a></li>
+                {%endif%}
                 <li><a href="" class="nav-tag" >Watch Streams</a></li>
 
 
