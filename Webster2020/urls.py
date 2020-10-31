@@ -18,6 +18,7 @@ urlpatterns = [
     path('user/',include('user.urls')),
     path('report/',include('Report.urls')),
     path('group/',include('Group.urls')),
+    path('chat/',include('Chat.urls')),
     path('summernote/', include('django_summernote.urls')),
 ]
 

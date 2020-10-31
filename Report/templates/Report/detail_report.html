@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {%for r in reports%}
+    <h1>{{r.id}}</h1>
+    <a href="{%url 'post-delete' r.Post.id%}">Delete</a>
+<!--    <button></button>-->
+    <h1>r.Raised_by.username</h1>
+    {%endfor%}
+</body>
+</html>

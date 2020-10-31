@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+{%for ob in following%}
+<a href="{% url 'profile' slug=ob.username %}"><h2>{{ob.username}}</h2></a>
+{%endfor%}
+</body>
+</html>

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'Group',
     'Chat',
     'Report',
+    'channels',
     'django_summernote',
     'materializecssform',
 
@@ -64,7 +65,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+# CHANNEL_LAYERS = {
+#       “default”: {
+#       “BACKEND”: “asgi_redis.RedisChannelLayer”,
+#       “CONFIG”: {
+#          “hosts”: [(redis_host, 6379)],
+#     },
+#     “ROUTING”: “routing.application”,
+#    },
+# }
 ROOT_URLCONF = 'Webster2020.urls'
 
 TEMPLATES = [
@@ -90,6 +99,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Webster2020.wsgi.application'
+ASGI_APPLICATION = 'Webster2020.asgi.application'
+
+
 
 
 # Database
@@ -120,6 +132,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+# ASGI_APPLICATION = 'Webster2020.asgi.application'
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
 
 
 # Internationalization
