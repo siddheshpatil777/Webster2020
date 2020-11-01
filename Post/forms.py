@@ -2,7 +2,7 @@ from django import forms
 from .models import GroupPost
 from Tag.models import Tag
 from django.forms import formset_factory,modelformset_factory
-from .models import Poll,PollChoice,Post,VideoPost
+from .models import Poll,PollChoice,Post, VideoPost
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
 official_tag=['official','avishkar','freshers']

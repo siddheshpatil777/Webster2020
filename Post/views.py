@@ -8,7 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post, Comment ,Poll ,PollChoice, VideoPost
+from .models import Post, Comment ,Poll ,PollChoice,VideoPost
 from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect, JsonResponse,HttpResponse
 from Tag.models import Tag

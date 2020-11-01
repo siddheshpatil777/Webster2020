@@ -50,5 +50,10 @@ class PollChoice(models.Model):
 	def __str__(self):
 		return self.poll.title + self.option
 
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'videos/user_{0}/{1}'.format(instance.author.id, filename)
+
 class VideoPost(Post):
-	video=models.FileField(upload_to='videos/')
+	# dog=models.TextField(default="")
+	video=models.FileField(upload_to=user_directory_path)
