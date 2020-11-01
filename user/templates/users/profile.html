@@ -13,7 +13,7 @@
 
     {% include 'snippets/requirements/materializeCSSReq.html' %}
     {% include 'snippets/importantShades.html' %}
-
+    {% include 'snippets/importantStyles.html' %}
     <title>ProfilePage</title>
 
     <link rel="stylesheet" href="{% static 'profilePage.css' %}">
@@ -51,7 +51,7 @@
 			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
 		</div> -->
     </div>
-    <div class="blackShade2 container my ">
+    <div class="blackShade3  my ">
         <div class="row">
             <div class="col s12 l4  goup">
                 <div class="row">
@@ -67,32 +67,37 @@
                 </div>
                 <div class="row">
                     <div class="col s12 l12 ">
-                        <!-- <div class="card ">
-                            <div class="card-content"> -->
-                        <h4 class="blue-text text-darken-4"> @{{ userd.username }}</h4>
-                        <h4 class="blue-text text-darken-4">User Info</h4>
-                        <p>Name:{{userd.first_name}} {{userd.last_name}}</p>
-                        <p>Gender:{{userd.profile.get_gender_display}} </p>
-                        <p>Registration Number:{{userd.regnum}}</p>
-                        <p> From: {{userd.profile.country}} </p>
-                        <p> Bio:{{userd.profile.bio}} </p>
+
+                        <div class="blackShade4 card ">
+                            <div class="card-content"> 
+
+                        <h4 class=" center deep-purple-text text-darken-1"> @{{ userd.username }}</h4>
+                        <!-- <h4 class="blue-text text-darken-4">User Info</h4> -->
+                        <div class="thintext4 white-text flow-text"> 
+                            <p class=" thintext3 white-text flow-text">{{userd.first_name}} {{userd.last_name}}</p>
+                            <p>{{userd.profile.get_gender_display}} </p>
+                            <p>Registration Number:{{userd.regnum}}</p>
+                            <p> From: {{userd.profile.country}} </p>
+                            
+                            <p> Bio:{{userd.profile.bio}} </p>
+                        </div>
+                       
                         {% if user.is_authenticated %}
                         {% if userd == user %}
 
-                        <span><a href="#profileEditModal" class="btn btn-large orange modal-trigger"> Edit</a></span>
+                        <span><a href="#profileEditModal" class="btn btn-small orange modal-trigger"> Edit</a></span>
                         {% endif %}
-                        <span><a href="#followerFollowing" class="btn btn-large orange modal-trigger">
-                                Followers</a></span>
-                        <span><a href="#followerFollowing" class="btn btn-large orange modal-trigger">
-                                Followings</a></span>
-                        <span><a id="followThisDudeButton" class="btn btn-large orange modal-trigger">
+                        <span><a href="#followerFollowing" class="btn btn-small orange modal-trigger">
+                                Followers/Followings</a></span>
+                       
+                        <span><a id="followThisDudeButton" class="btn btn-small orange modal-trigger">
                                 FOLLOW</a></span>
 
-                        <span><a id="unfollowThisDudeButton" class="btn btn-large orange modal-trigger">
+                        <span><a id="unfollowThisDudeButton" class="btn btn-small orange modal-trigger">
                                 UNFOLLOW</a></span>
                         {% endif %}
-                        <!-- </div>
-                        </div> -->
+                        </div>
+                        </div>
                         <div class="divider"></div>
                     </div>
 
@@ -109,34 +114,38 @@
 
 
             </div>
-            <div class=" blackShade1 col s12 l8  ">
+            <div class=" blackShade5 col s12 l8  ">
 
-                <div class="row">
-                    <div class="col s12 l12">
-                        <h2 id="username" class="left ">{{ userd.first_name }} {{userd.last_name}}</h2>
-
+                <div class="blackShade5 card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 l12">
+                                <h2 id="username" class="left white-text  ">{{ userd.first_name }} {{userd.last_name}}</h2>
+        
+                            </div>
+                        </div>
+        
+                        <!-- tabs -->
+                        <div class="row">
+                            <div class="col s10 l10 offset-s1 offset-l1 white-text ">
+                                {% if posts %}
+                                {% if userd == user %}
+                                <h3> My posts </h3>
+                                {% else %}
+                                <h3> Posts </h3>
+                                {% endif %}
+                            </div>
+        
+                            {% for post in posts %}
+        
+                            {% include 'snippets/postCards/postCardMini.html'%}
+                            {% endfor %}
+                            {% else %}
+                            <h3>No posts yet</h3>
+                            {% endif %}
+        
+                        </div>
                     </div>
-                </div>
-
-                <!-- tabs -->
-                <div class="row">
-                    <div class="col s10 l10 offset-s1 offset-l1 ">
-                        {% if posts %}
-                        {% if userd == user %}
-                        <h3> My posts </h3>
-                        {% else %}
-                        <h3> Posts </h3>
-                        {% endif %}
-                    </div>
-
-                    {% for post in posts %}
-
-                    {% include 'snippets/postCards/postCardMini.html'%}
-                    {% endfor %}
-                    {% else %}
-                    <h3>No posts yet</h3>
-                    {% endif %}
-
                 </div>
 
             </div>
