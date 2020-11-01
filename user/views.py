@@ -10,6 +10,8 @@ from .models import Profile
 from Post.models import Post
 from Post.views import PostListView
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect, JsonResponse,HttpResponse
+
 
 # Create your views here.
 def register(request):
@@ -90,3 +92,22 @@ def followers(request,user):
 	follower = user.profile.followers.all()
 	context['followers'] = follower
 	return render(request, 'users/followers.html', context)
+
+@login_required
+def follow(request,user):
+	if(request.method == 'POST'):
+		user=User.objects.filter(username=user).first()
+		user.profile.followers.add(request.user)
+		request.user.profile.followings.add(user)
+	return JsonResponse({'success':"success"})
+
+		
+@login_required
+def unfollow(request,user):
+	if(request.method == 'POST'):
+		user=User.objects.filter(username=user).first()
+		user.profile.followers.remove(request.user)
+		request.user.profile.followings.add(user)
+	return JsonResponse({'success':"success"})
+		
+	

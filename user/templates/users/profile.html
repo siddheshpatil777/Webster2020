@@ -28,29 +28,29 @@
     {% include 'users/profilePageMembers/profilePageParallax.html'%}
     <!-- services / tabs -->
     <style>
-		#modal11 {
-			width: 80vw;
-			height: 80vh;
-			overflow-y: scroll;
-		}
+        #modal11 {
+            width: 80vw;
+            height: 80vh;
+            overflow-y: scroll;
+        }
 
-		@media screen and (min-width: 600px) {
-			#modal11 {
-				width: 80vw;
-				height: 80vh;
-				overflow-y: hidden;
-			}
-		}
-	</style>
+        @media screen and (min-width: 600px) {
+            #modal11 {
+                width: 80vw;
+                height: 80vh;
+                overflow-y: hidden;
+            }
+        }
+    </style>
     <div id="modal11" class=" modal">
-		<div id="modal11content" class="modal-content">
-			<h4>Modal Header</h4>
-			<p>A bunch of text</p>
-		</div>
-		<!-- <div class="modal-footer">
+        <div id="modal11content" class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <!-- <div class="modal-footer">
 			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
 		</div> -->
-	</div>
+    </div>
     <div class="blackShade2 container my ">
         <div class="row">
             <div class="col s12 l4  goup">
@@ -85,6 +85,11 @@
                                 Followers</a></span>
                         <span><a href="#followerFollowing" class="btn btn-large orange modal-trigger">
                                 Followings</a></span>
+                        <span><a id="followThisDudeButton" class="btn btn-large orange modal-trigger">
+                                FOLLOW</a></span>
+
+                        <span><a id="unfollowThisDudeButton" class="btn btn-large orange modal-trigger">
+                                UNFOLLOW</a></span>
                         {% endif %}
                         <!-- </div>
                         </div> -->
@@ -105,7 +110,7 @@
 
             </div>
             <div class=" blackShade1 col s12 l8  ">
-                
+
                 <div class="row">
                     <div class="col s12 l12">
                         <h2 id="username" class="left ">{{ userd.first_name }} {{userd.last_name}}</h2>
@@ -143,10 +148,10 @@
 
     {% include 'users/profilePageMembers/profileEditModal.html'%}
     {% include 'users/profilePageMembers/followersFollowingModal.html'%}
-    
 
 
-   
+
+
 
     {% if user.is_authenticated %}
     {% if userd == user %}
@@ -157,12 +162,12 @@
     {% endif %}
     <!-- Compiled and minified JavaScript -->
     <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'materialize.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script src="{% static 'materializeInit.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function (event) {
-           
+
             $(document).on("click", "#postCardOpenModal", function (event) {
                 console.log(event.target.id);
                 event.preventDefault();
@@ -171,11 +176,11 @@
                     type: "GET",
                     url: "/post/" + id,
                     success: function (response) {
-    
+
                         $('#modal11content').load("/post/" + id + " #modal1",
                             function () {});
                         $('#modal11').modal('open');
-                      
+
                         // $("#love").addClass("red-text");
                     },
                     error: function (rs, e) {
@@ -185,11 +190,11 @@
             });
             $(document).on('click', '#like', function (event) {
                 event.preventDefault();
-    
-    
+
+
                 var pk = $(this).attr('value');
-    
-    
+
+
                 $.ajax({
                     type: 'POST',
                     url: '{% url "like-post" %}',
@@ -206,9 +211,9 @@
                         console.log(rs.responseText);
                     }
                 });
-    
+
             });
-    
+
             function create_post(id) {
                 console.log("create post is working!") // sanity check
                 $.ajax({
@@ -218,16 +223,16 @@
                         the_content: $('#id_content').val(),
                         'csrfmiddlewaretoken': '{{csrf_token}}'
                     }, // data sent with the post request
-    
+
                     success: function (json) {
-    
+
                         $('#comment-section').load(
                             "/post/" + id + "/" + " #comment-section",
                             function () {});
-    
+
                         console.log("success"); // another sanity check
                     },
-    
+
                     // handle a non-successful response
                     error: function (xhr, errmsg, err) {
                         $('#results').html(
@@ -242,12 +247,52 @@
                 });
             };
             $(document).on('submit', '.post-form', function (event) {
-    
+
                 event.preventDefault();
                 console.log("form submitted!"); // sanity check
                 let id = event.target.id;
                 console.log(id);
                 create_post(id);
+            }); 
+            $(document).on('click', '#followThisDudeButton', function (event) {
+                console.log('followThisDudeButton ');
+                event.preventDefault();
+                // var pk = $(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'follow' user %}",
+                    data: {
+                        'csrfmiddlewaretoken': '{{  csrf_token }}'
+                    },
+                    success: function (response) {
+                        
+                        console.log('Success');
+                    
+                    },
+                    error: function (rs, e) {
+                        console.log(rs.responseText);
+                    }
+                });
+            });
+            $(document).on('click', '#unfollowThisDudeButton', function (event) {
+                console.log('unfollowThisDudeButton ');
+                event.preventDefault();
+                // var pk = $(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'unfollow' user %}",
+                    data: {
+                        'csrfmiddlewaretoken': '{{  csrf_token }}'
+                    },
+                    success: function (response) {
+                        
+                        console.log('Success');
+                    
+                    },
+                    error: function (rs, e) {
+                        console.log(rs.responseText);
+                    }
+                });
             });
             // $('#sendButton').on('click', function (event) {
             //     event.preventDefault();
@@ -255,7 +300,7 @@
             // 	console.log(event.target);
             //     // create_post();
             // });
-    
+
         });
     </script>
 </body>
