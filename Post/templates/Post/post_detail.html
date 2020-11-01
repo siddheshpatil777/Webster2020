@@ -53,6 +53,7 @@
         #intro {
             max-height: 30vh;
             width: auto;
+            /* margin: auto; */
         }
     </style>
     <div class="conatiner">
@@ -96,9 +97,13 @@
                         {% include "Post/poll_detail.html" %}
 
                         {% if object.type == 1%}
-                        <video id="intro" type="video/mp4" controls preload autoplay>
-                            <source src="{{ vpost.video.url }}" type="video/mp4">
-                        </video>
+                        <div class="row">
+                            <div class="col s6 offset-s3">
+                                <video class="center" id="intro" type="video/mp4" controls preload autoplay>
+                                    <source class="center"  src="{{ vpost.video.url }}" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
                         {% endif %}
                     </div>
                     <div class="card-reveal">

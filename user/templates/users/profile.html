@@ -10,10 +10,14 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
+    <style>
+         body,html{
+            overflow-x:auto;
+        }
+    </style>
     {% include 'snippets/requirements/materializeCSSReq.html' %}
     {% include 'snippets/importantShades.html' %}
-
+    {% include 'snippets/importantStyles.html' %}
     <title>ProfilePage</title>
 
     <link rel="stylesheet" href="{% static 'profilePage.css' %}">
@@ -28,30 +32,30 @@
     {% include 'users/profilePageMembers/profilePageParallax.html'%}
     <!-- services / tabs -->
     <style>
-		#modal11 {
-			width: 80vw;
-			height: 80vh;
-			overflow-y: scroll;
-		}
+        #modal11 {
+            width: 80vw;
+            height: 80vh;
+            overflow-y: scroll;
+        }
 
-		@media screen and (min-width: 600px) {
-			#modal11 {
-				width: 80vw;
-				height: 80vh;
-				overflow-y: hidden;
-			}
-		}
-	</style>
+        @media screen and (min-width: 600px) {
+            #modal11 {
+                width: 80vw;
+                height: 80vh;
+                overflow-y: hidden;
+            }
+        }
+    </style>
     <div id="modal11" class=" modal">
-		<div id="modal11content" class="modal-content">
-			<h4>Modal Header</h4>
-			<p>A bunch of text</p>
-		</div>
-		<!-- <div class="modal-footer">
+        <div id="modal11content" class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <!-- <div class="modal-footer">
 			<a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
 		</div> -->
-	</div>
-    <div class="blackShade2 container my ">
+    </div>
+    <div class="blackShade3  my ">
         <div class="row">
             <div class="col s12 l4  goup">
                 <div class="row">
@@ -67,27 +71,37 @@
                 </div>
                 <div class="row">
                     <div class="col s12 l12 ">
-                        <!-- <div class="card ">
-                            <div class="card-content"> -->
-                        <h4 class="blue-text text-darken-4"> @{{ userd.username }}</h4>
-                        <h4 class="blue-text text-darken-4">User Info</h4>
-                        <p>Name:{{userd.first_name}} {{userd.last_name}}</p>
-                        <p>Gender:{{userd.profile.get_gender_display}} </p>
-                        <p>Registration Number:{{userd.regnum}}</p>
-                        <p> From: {{userd.profile.country}} </p>
-                        <p> Bio:{{userd.profile.bio}} </p>
+
+                        <div class="blackShade4 card ">
+                            <div class="card-content"> 
+
+                        <h4 class=" center deep-purple-text text-darken-1"> @{{ userd.username }}</h4>
+                        <!-- <h4 class="blue-text text-darken-4">User Info</h4> -->
+                        <div class="thintext4 white-text flow-text"> 
+                            <p class=" thintext3 white-text flow-text">{{userd.first_name}} {{userd.last_name}}</p>
+                            <p>{{userd.profile.get_gender_display}} </p>
+                            <p>Registration Number:{{userd.regnum}}</p>
+                            <p> From: {{userd.profile.country}} </p>
+                            
+                            <p> Bio:{{userd.profile.bio}} </p>
+                        </div>
+                       
                         {% if user.is_authenticated %}
                         {% if userd == user %}
 
-                        <span><a href="#profileEditModal" class="btn btn-large orange modal-trigger"> Edit</a></span>
+                        <span><a href="#profileEditModal" class="btn btn-large btn-floating orange modal-trigger right "> <i class="material-icons">settings</i></a></span>
                         {% endif %}
-                        <span><a href="#followerFollowing" class="btn btn-large orange modal-trigger">
-                                Followers</a></span>
-                        <span><a href="#followerFollowing" class="btn btn-large orange modal-trigger">
-                                Followings</a></span>
+                        <span><a href="#followerFollowing" class="btn btn-small orange modal-trigger">
+                                Followers/Followings</a></span>
+                       
+                        <span><a id="followThisDudeButton" class="btn btn-small orange modal-trigger">
+                                FOLLOW</a></span>
+
+                        <span><a id="unfollowThisDudeButton" class="btn btn-small orange modal-trigger">
+                                UNFOLLOW</a></span>
                         {% endif %}
-                        <!-- </div>
-                        </div> -->
+                        </div>
+                        </div>
                         <div class="divider"></div>
                     </div>
 
@@ -104,34 +118,38 @@
 
 
             </div>
-            <div class=" blackShade1 col s12 l8  ">
-                
-                <div class="row">
-                    <div class="col s12 l12">
-                        <h2 id="username" class="left ">{{ userd.first_name }} {{userd.last_name}}</h2>
+            <div class=" blackShade5 col s12 l8  ">
 
+                <div class="blackShade5 card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 l12">
+                                <h2 id="username" class="left white-text  ">{{ userd.first_name }} {{userd.last_name}}</h2>
+        
+                            </div>
+                        </div>
+        
+                        <!-- tabs -->
+                        <div class="row">
+                            <div class="col s10 l10 offset-s1 offset-l1 white-text ">
+                                {% if posts %}
+                                {% if userd == user %}
+                                <h3> My posts </h3>
+                                {% else %}
+                                <h3> Posts </h3>
+                                {% endif %}
+                            </div>
+        
+                            {% for post in posts %}
+        
+                            {% include 'snippets/postCards/postCardMini.html'%}
+                            {% endfor %}
+                            {% else %}
+                            <h3>No posts yet</h3>
+                            {% endif %}
+        
+                        </div>
                     </div>
-                </div>
-
-                <!-- tabs -->
-                <div class="row">
-                    <div class="col s10 l10 offset-s1 offset-l1 ">
-                        {% if posts %}
-                        {% if userd == user %}
-                        <h3> My posts </h3>
-                        {% else %}
-                        <h3> Posts </h3>
-                        {% endif %}
-                    </div>
-
-                    {% for post in posts %}
-
-                    {% include 'snippets/postCards/postCardMini.html'%}
-                    {% endfor %}
-                    {% else %}
-                    <h3>No posts yet</h3>
-                    {% endif %}
-
                 </div>
 
             </div>
@@ -143,10 +161,10 @@
 
     {% include 'users/profilePageMembers/profileEditModal.html'%}
     {% include 'users/profilePageMembers/followersFollowingModal.html'%}
-    
 
 
-   
+
+
 
     {% if user.is_authenticated %}
     {% if userd == user %}
@@ -157,12 +175,12 @@
     {% endif %}
     <!-- Compiled and minified JavaScript -->
     <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'materialize.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script src="{% static 'materializeInit.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function (event) {
-           
+
             $(document).on("click", "#postCardOpenModal", function (event) {
                 console.log(event.target.id);
                 event.preventDefault();
@@ -171,11 +189,11 @@
                     type: "GET",
                     url: "/post/" + id,
                     success: function (response) {
-    
+
                         $('#modal11content').load("/post/" + id + " #modal1",
                             function () {});
                         $('#modal11').modal('open');
-                      
+
                         // $("#love").addClass("red-text");
                     },
                     error: function (rs, e) {
@@ -185,11 +203,11 @@
             });
             $(document).on('click', '#like', function (event) {
                 event.preventDefault();
-    
-    
+
+
                 var pk = $(this).attr('value');
-    
-    
+
+
                 $.ajax({
                     type: 'POST',
                     url: '{% url "like-post" %}',
@@ -206,9 +224,9 @@
                         console.log(rs.responseText);
                     }
                 });
-    
+
             });
-    
+
             function create_post(id) {
                 console.log("create post is working!") // sanity check
                 $.ajax({
@@ -218,16 +236,16 @@
                         the_content: $('#id_content').val(),
                         'csrfmiddlewaretoken': '{{csrf_token}}'
                     }, // data sent with the post request
-    
+
                     success: function (json) {
-    
+
                         $('#comment-section').load(
                             "/post/" + id + "/" + " #comment-section",
                             function () {});
-    
+
                         console.log("success"); // another sanity check
                     },
-    
+
                     // handle a non-successful response
                     error: function (xhr, errmsg, err) {
                         $('#results').html(
@@ -242,12 +260,52 @@
                 });
             };
             $(document).on('submit', '.post-form', function (event) {
-    
+
                 event.preventDefault();
                 console.log("form submitted!"); // sanity check
                 let id = event.target.id;
                 console.log(id);
                 create_post(id);
+            }); 
+            $(document).on('click', '#followThisDudeButton', function (event) {
+                console.log('followThisDudeButton ');
+                event.preventDefault();
+                // var pk = $(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'follow' user %}",
+                    data: {
+                        'csrfmiddlewaretoken': '{{  csrf_token }}'
+                    },
+                    success: function (response) {
+                        
+                        console.log('Success');
+                    
+                    },
+                    error: function (rs, e) {
+                        console.log(rs.responseText);
+                    }
+                });
+            });
+            $(document).on('click', '#unfollowThisDudeButton', function (event) {
+                console.log('unfollowThisDudeButton ');
+                event.preventDefault();
+                // var pk = $(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'unfollow' user %}",
+                    data: {
+                        'csrfmiddlewaretoken': '{{  csrf_token }}'
+                    },
+                    success: function (response) {
+                        
+                        console.log('Success');
+                    
+                    },
+                    error: function (rs, e) {
+                        console.log(rs.responseText);
+                    }
+                });
             });
             // $('#sendButton').on('click', function (event) {
             //     event.preventDefault();
@@ -255,7 +313,7 @@
             // 	console.log(event.target);
             //     // create_post();
             // });
-    
+
         });
     </script>
 </body>
