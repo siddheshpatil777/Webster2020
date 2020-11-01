@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'Post',
     'Tag',
     'Group',
-    'Chat',
+    # 'Chat',
     'Report',
     'django_summernote',
     'materializecssform',
