@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'materialize.min.css' %}">
+    <title> TWAATCH </title>
+    {% include 'snippets/importantShades.html' %}
+   
+
+</head>
+{% include 'snippets/sitePreLoader.html' %}
+<body class="" >
+   
+
+
+  
+    
+        {% block content %}
+        {% endblock %}
+   
+
+    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'materialize.min.js' %}"></script>
+
+
+</body>
+
+
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('.myLoader-wrapper').fadeOut("slow");
+    });
+    $(document).ready(function () {
+
+        $('.sidenav').sidenav();
+        $('.materialboxed').materialbox();
+        $('.parallax').parallax();
+        $('.tabs').tabs();
+
+        $('.modal').modal();
+        $('.collapsible').collapsible();
+        $('.carousel').carousel();
+        // $('.carousel.carousel-slider').carousel({
+        //     fullWidth: true
+        // });
+        $('.scrollspy').scrollSpy();
+        // $('').edge='right';
+        var elems = document.getElementById('slide-out');
+        var rightNav = M.Sidenav.init(elems, {
+            edge: 'right'
+        });
+
+        // document.getElementById('notificationsButton').addEventListener("click", function() {
+        //     rightNav.open();
+        // });
+
+    });
+</script>
+
+</html>

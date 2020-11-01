@@ -1,0 +1,7 @@
+<li class="collection-item avatar">
+    <img src="{{comment.author.profile.image.url}}" alt="" class="circle">
+    
+    <span class="title"></span><a class="title    " href="{% url 'profile' slug=comment.author.username %}">{{ comment.author }}</a> <p class="right">{{ object.date_posted|timesince:comment.date_posted  }}</p></span>
+    <p>{{comment.content}}</p>
+    <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+</li>

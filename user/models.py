@@ -10,6 +10,7 @@ SEX = ((0, "Not Defined"), (1, "Male"), (2, "Female"))
 official_tag=['official']
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    moderator = models.BooleanField(default=False)
 
     followers = models.ManyToManyField(User,related_name='followers',blank=True)
     followings = models.ManyToManyField(User,related_name='followings',blank=True)

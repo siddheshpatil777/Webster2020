@@ -4,11 +4,11 @@
     <form action = "{% url 'like-post'%}" method = "post">
       {% csrf_token %}
       {% if not is_liked %}
-    <a name = "post_id" id = "like" class = "btn-floating pink lighten-2 " value = "{{post.id}}" type = "submit">     <i id="love" class="material-icons white-text">favorite</i>          </a>
+    <a name = "post_id" id = "like" class = " btn-floating deep-purple lighten-3  waves-effect waves-light" value = "{{post.id}}" type = "submit">     <i id="love" class="large material-icons white-text large">thumb_up</i>          </a>
 
      {% else %}
-     <a name = "post_id" id = "like" class = "btn-floating pink lighten-2 " value = "{{post.id}}" type = "submit">     <i id="love" class="material-icons red-text">favorite</i>      </a>
-
+     <a name = "post_id" id = "like" class = "  btn-floating deep-purple lighten-3   waves-effect waves-light" value = "{{post.id}}" type = "submit">     <i id="love" class="large material-icons purple-text  ">thumb_up</i>      </a>
+    
      {% endif %}
      <p>{{post.likers.count}} peopleliked</p>
     </form>
