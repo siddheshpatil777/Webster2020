@@ -10,7 +10,11 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
+    <style>
+         body,html{
+            overflow-x:auto;
+        }
+    </style>
     {% include 'snippets/requirements/materializeCSSReq.html' %}
     {% include 'snippets/importantShades.html' %}
     {% include 'snippets/importantStyles.html' %}
@@ -85,7 +89,7 @@
                         {% if user.is_authenticated %}
                         {% if userd == user %}
 
-                        <span><a href="#profileEditModal" class="btn btn-small orange modal-trigger"> Edit</a></span>
+                        <span><a href="#profileEditModal" class="btn btn-large btn-floating orange modal-trigger right "> <i class="material-icons">settings</i></a></span>
                         {% endif %}
                         <span><a href="#followerFollowing" class="btn btn-small orange modal-trigger">
                                 Followers/Followings</a></span>
