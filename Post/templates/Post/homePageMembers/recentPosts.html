@@ -1,9 +1,12 @@
 <br>
+<div class="row">
 {% for post in page_obj %}
-
+<div class="col s6">
 {% include 'snippets/postCards/postCard.html' %}
+    </div>
 
 {% endfor %}
+</div>
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}

@@ -56,7 +56,7 @@
     }
 </style>
 
-<div id="postID{{post.id}}"class="myPostCard card blackShade3  z-depth-2">
+<div id="postID{{post.id}}"class=" myPostCard card blackShade3  z-depth-2">
     <div class="card-content white-text">
         <div class="row">
             <div class="col s1">
@@ -68,13 +68,13 @@
                        
                     </div>
                     <br>
-                    <div class="center">
-                        <i class="tiny material-icons  white-text">thumb_up</i>
-                        <p>{{post.likers.count}}</p>
-                        <i class="tiny material-icons  white-text">remove_red_eye</i>
-                        <p>{{post.views.count}}</p>
-
-                    </div>
+{#                    <div class="center">#}
+{#                        <i class="tiny material-icons  white-text">thumb_up</i>#}
+{#                        <p>{{post.likers.count}}</p>#}
+{#                        <i class="tiny material-icons  white-text">remove_red_eye</i>#}
+{#                        <p>{{post.views.count}}</p>#}
+{##}
+{#                    </div>#}
                 </div>
 
 
@@ -88,23 +88,23 @@
                     <b><a class="postCardOpenModal white-text flow-text" id="{{post.id}}">{{ post.title }}</a></b>
                     {% endif %}
                     <!-- <a href="{% url 'post-detail' post.id %}" class=" white-text myCard-title" id="">{{ post.title }}</a> -->
-                    <div class="right">
-                        <div class="row">
-                            <div class="col s1">
-
-                            </div>
-                            <div class="cl s1">
-
-                            </div>
-                            <div class="col s1">
-                                <i class="material-icons activator  white-text">more_vert</i>
-                            </div>
-                        </div>
-                    </div>
+{#                    <div class="right">#}
+{#                        <div class="row">#}
+{#                            <div class="col s1">#}
+{##}
+{#                            </div>#}
+{#                            <div class="cl s1">#}
+{##}
+{#                            </div>#}
+{#                            <div class="col s1">#}
+{#                                <i class="material-icons activator  white-text">more_vert</i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
 
                 </span>
                 <span>
-                    <p><a class="" href="{% url 'profile' slug=post.author.username %}">@{{ post.author }}</a>|{{ post.date_posted }}</p>
+{#                    <p><a class="" href="{% url 'profile' slug=post.author.username %}">@{{ post.author }}</a>|{{ post.date_posted }}</p>#}
 
 
                 </span>
@@ -116,7 +116,7 @@
                 <span class="card-title"><a href="{% url 'post-detail' post.id %}" class="card-title blue-grey-text text-lighten-4">{{ post.title }}</a><i class="material-icons right activator">more_vert</i></span>
                 {% endif %} -->
 
-                <p>Content:{{post.content|safe}}</p>
+{#                <p>Content:{{post.content|safe}}</p>#}
             </div>
         </div>
     </div>

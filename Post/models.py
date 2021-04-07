@@ -15,10 +15,8 @@ class Post(models.Model):
 	likers = models.ManyToManyField(User, related_name = 'likers', blank = True)
 	tags = models.ManyToManyField(Tag, related_name = 'tags', blank = True)
 	type = models.IntegerField(default=0)
-
 	def get_absolute_url(self):
 		return reverse('post-detail', kwargs = {'pk':self.pk})
-
 	def __str__(self):
 		return self.title
 
