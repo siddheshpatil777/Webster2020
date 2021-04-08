@@ -86,8 +86,11 @@ class PostDetailView(LoginRequiredMixin,DetailView):
         context['post']  = post
         context['tags'] = post.tags.all
         return context
+    # def get(self,*args):
+    #     return HttpResponse("HEllo")
 # @login_required
 # def postDetailModel(request,id):
+#     return
 
 
 def postcreate(request,type):

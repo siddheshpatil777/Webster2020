@@ -1,174 +1,491 @@
+{#</div>#}
+{% load static %}
+{% include 'snippets/mainNav.html' %}
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'materialize.min.css' %}">
+
+
+
+    {% if title %}
+        <title> TWAATCH- {{ title }}</title>
+    {% else %}
+        <title> TWAATCH </title>
+    {% endif %}
+    <style>
+        body, html {
+            overflow-x: auto;
+        }
+
+        nav .badge {
+            position: relative;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+    {% include 'snippets/importantShades.html' %}
+
+</head>
+
+<body class="">
 {% load mathfilters %}
 {% load static %}
 
 
-<div id="modal1">
+{#<div id="modal1">#}
 
-    <style media="screen">
-        /* .circular--portrait {
-  position: relative;
-  width: auto;
-  height: 40px;
-  overflow: hidden;
-  border-radius: 50%;
+<style media="screen">
+    /* .circular--portrait {
+position: relative;
+width: auto;
+height: 40px;
+overflow: hidden;
+border-radius: 50%;
 }
 
 .circular--portrait img {
-  width: 100%;
-  height: auto;
+width: 100%;
+height: auto;
 } */
-        .circular--square {
-            border-radius: 50% !important;
+    .circular--square {
+        border-radius: 50% !important;
+    }
+
+    .circular--landscape {
+        margin: 4vh;
+        display: inline-block;
+        position: relative;
+        max-width: 10vh;
+        max-height: 10vh;
+        /* width: 200px; */
+        height: 10vh;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    .circular--landscape img {
+
+        width: auto;
+        height: 100%;
+        /* margin-left: -50px; */
+    }
+
+    #mainContentCard {
+    }
+
+    @media screen and (min-width: 600px) {
+        #comment-section {
+            /* max-height: fit-content; */
+            max-height: 50vh;
+            overflow-y: scroll;
         }
+    }
 
-        .circular--landscape {
-            margin: 4vh;
-            display: inline-block;
-            position: relative;
-            max-width: 10vh;
-            max-height: 10vh;
-            /* width: 200px; */
-            height: 10vh;
-            overflow: hidden;
-            border-radius: 50%;
-        }
+    #intro {
+        max-height: 30vh;
+        width: auto;
+        /* margin: auto; */
+    }
 
-        .circular--landscape img {
+    .video-content-tab {
+        height: 60vh;
+    }
+</style>
+<div class="">
+    {#    <div class="col s10">#}
+    {#         #}
+    {#    </div>#}
+    <div class="row">
+        <div class="video-content-tab col s10" style="background-color:chartreuse;">
+            lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+            lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+        </div>
+        <div class="video-content-tab col s2">
 
-            width: auto;
-            height: 100%;
-            /* margin-left: -50px; */
-        }
-
-        #mainContentCard {}
-
-        @media screen and (min-width: 600px) {
-            #comment-section {
-                /* max-height: fit-content; */
-                max-height: 50vh;
-                overflow-y: scroll;
-            }
-        }
-
-        #intro {
-            max-height: 30vh;
-            width: auto;
-            /* margin: auto; */
-        }
-    </style>
-    <div class="conatiner">
-        <div class=" row">
-            <div class="col s12 m8">
-                <div id="mainContentCard" class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s10 l10 ">
-                                <h2>{{ object.title }}</h2>
-
-                            </div>
-
-                            <div class="col s1 l1 ">
-                                <div class="center-align">
-                                    <div id="like-section"> {% include 'Post/like-section.html' %} </div>
-                                </div>
-
-                            </div>
-                            <div class="col s1 l1 ">
-                                <div class="right-align">
-                                    {% if object.author == user %}
-                                    <span class="card-title activator grey-text text-darken-4"><i
-                                            class="material-icons right">more_vert</i></span>
-                                    {% endif %}
-                                </div>
-
-                            </div>
-                        </div>
-                        <a class="mr-2" href="{% url 'profile' slug=object.author.username %}">{{ object.author }}</a>
-                        <p class="right">{{ object.date_posted }}</p>
-
-
-                        <p>
-                            {% for tag in tags %}
-                            <a href="{% url 'explore-tag' tag %}"> #{{tag}} </a>
-                            {% endfor %}
-                        </p>
-                        <p class="article-content">{{ object.content|safe }}</p>
-                        <p> Views: {{object.views.count}} </p>
-                        {% include "Post/poll_detail.html" %}
-
-                        {% if object.type == 1%}
-                        <div class="row">
-                            <div class="col s6 offset-s3">
-                                <video class="center" id="intro" type="video/mp4" controls preload autoplay>
-                                    <source class="center"  src="{{ vpost.video.url }}" type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="card-reveal">
-                        {% if object.author == user %}
-                        <span class="card-title grey-text text-darken-4">What to do<i
-                                class="material-icons right">close</i></span>
-
-                        <a class="btn btn-large orange waves-effect waves-light red"
-                            href="{%url 'post-update' object.id%}">Update </a>
-                        <a class="btn btn-large red waves-effect waves-light red"
-                            href="{%url 'post-delete' object.id%}">
-                            Delete </a>
-                       
-                        {% endif %}
-
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4">
-
-                <div id="comment-section">
-                    <ul class="collection">
-                        {% for comment in comments %}
-                        {% include 'Post/homePageMembers/commentCardSmall.html' %}
-                        {% endfor %}
-                    </ul>
-
-                </div>
-                <form class="post-form" id="{{object.id}}">
-
-                    {%csrf_token%}
-
-                    <div class="input-field">
-                        <i class="material-icons prefix">message</i>
-                        <textarea id="id_content" class="materialize-textarea" cols="20" rows="20"></textarea>
-                        <label for="message">Your Message</label>
-                    </div>
-
-                    <div class="input-field center">
-                        <button id="sendButton" class="btn" type="submit">Submit</button>
-                    </div>
-                </form>
-
-                <!-- <ul class="collapsible">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>Continue the Conversation
-                    </div>
-                    <div class="collapsible-body"> -->
-
-
-                <!-- </div>
-                </li>
-            </ul> -->
+        </div>
+        <div class="col s10">
+            <div class="col s8 offset-s1">
+                <ul class="tabs">
+                    <li class="tab col s3"><a href="#test1">Test 1</a></li>
+                    <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+                    <li class="tab col s3 "><a href="#test3">twst3 Tab</a></li>
+                    <li class="tab col s3"><a href="#test4">Test 4</a></li>
+                </ul>
             </div>
         </div>
+        <div class="col s2"></div>
+        <button class="btn">hdhja</button>
+        <button class="btn">dhja</button>
+        {#            </div>#}
+        {#        </div>#}
+        {#        <div class="col s1"></div>#}
+        <div class="col s12">
+            <div class="row">
+                <div class="col s6 offset-s1 ">
+                    <style>
+                        .mainTabs {
+                            min-height: 50vh;
+                        }
+                    </style>
+                    <div class="row">
+                        <div id="test1" class="mainTabs col s12">T After telling everyone that Lorem ipsum, the
+                            nonsensical
+                            text
+                            that
+                            comes
+                            with
+                            PageMaker, only looks like Latin but actually says nothing, I heard from Richard McClintock,
+                            publication
+                            director at the Hampden-Sydney College in Virginia, who had enlightening news:
 
+                            Lorem ipsum is latin, slightly jumbled, the remnants of a passage from Cicero's 'De finibus
+                            bonorum
+                            et
+                            malorum' 1.10.32, which begins 'Neque porro quisquam est qui dolorem ipsum quia dolor sit
+                            amet,
+                            consectetur,
+                            adipisci velit...' [There is no one who loves pain itself, who seeks after it and wants to
+                            have
+                            it,
+                            simply
+                            because it is pain.]. [de Finibus Bonorum et Malorum, written in 45 BC, is a treatise on the
+                            theory
+                            of
+                            ethics very popular in the Renaisance.]
 
+                            What I find remarkable is that this text has been the industry's standard dummy text ever
+                            since
+                            some
+                            printed
+                            in the 1500s took a galley of type and scrambled it to make a type specimen book; it has
+                            survived
+                            not
+                            only
+                            four centuries of letter-by-letter resetting but even the leap into electronic typesetting,
+                            essentially
+                            unchanged except for an occasional 'ing' or 'y' thrown in. It's ironic that when the
+                            then-understood
+                            Latin
+                            was scrambled, it became as incomprehensible as Greek; the phrase 'it's Greek to me' and
+                            'greeking'
+                            have
+                            common semantic roots!
+                        </div>
+                        <div id="test2" class=" mainTabs col s12"> After telling everyone that Lorem ipsum, the
+                            nonsensical
+                            text
+                            that
+                            comes
+                            with
+                            PageMaker, only looks like Latin but actually says nothing, I heard from Richard McClintock,
+                            publication
+                            director at the Hampden-Sydney College in Virginia, who had enlightening news:
 
+                            Lorem ipsum is latin, slightly jumbled, the remnants of a passage from Cicero's 'De finibus
+                            bonorum
+                            et
+                            malorum' 1.10.32, which begins 'Neque porro quisquam est qui dolorem ipsum quia dolor sit
+                            amet,
+                            consectetur,
+                            adipisci velit...' [There is no one who loves pain itself, who seeks after it and wants to
+                            have
+                            it,
+                            simply
+                            because it is pain.]. [de Finibus Bonorum et Malorum, written in 45 BC, is a treatise on the
+                            theory
+                            of
+                            ethics very popular in the Renaisance.]
 
+                            What I find remarkable is that this text has been the industry's standard dummy text ever
+                            since
+                            some
+                            printed
+                            in the 1500s took a galley of type and scrambled it to make a type specimen book; it has
+                            survived
+                            not
+                            only
+                            four centuries of letter-by-letter resetting but even the leap into electronic typesetting,
+                            essentially
+                            unchanged except for an occasional 'ing' or 'y' thrown in. It's ironic that when the
+                            then-understood
+                            Latin
+                            was scrambled, it became as incomprehensible as Greek; the phrase 'it's Greek to me' and
+                            'greeking'
+                            have
+                            common semantic roots!
+                        </div>
+                        <div id="test3" class="mainTabs col s12">Test 3</div>
+                        <div id="test4" class="mainTabs col s12">Test 4</div>
+                    </div>
+                </div>
+
+                <div class=" col s4">
+                    <div class="container">
+                        <div class="row">
+                            <button class="btn btn-success">dsdckshdc</button>
+                            <button class="btn btn-success">sdcsdcs</button>
+                            <button class="btn btn-success">sdcsd</button>
+                            <button class="btn btn-success">dsdckshdc</button>
+                            <button class="btn btn-success">sdcsdcs</button>
+                        </div>
+                        <div class="row">
+                            <div class="col s10">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src="{% static 'csgo.jpg' %}">
+                                        <span class="card-title">Card Title</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <p>I am a very simple card. I am good at containing small bits of information.
+                                            I am convenient because I require little markup to use effectively.</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="#">This is a link</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col s4">
+        </div>
+        {#         <div class="col s1"></div>#}
+        <div class="col s10">
+
+            {#              <div id="mainContentCard" class="card">#}
+            {#            <div class="card-content">#}
+            {#                <div class="row">#}
+            {#                    <div class="col s10 l10 ">#}
+            {#                        <h2>{{ object.title }}</h2>#}
+            {#                    </div>#}
+            {#                    <div class="col s1 l1 ">#}
+            {#                        <div class="center-align">#}
+            {#                            <div id="like-section"> {% include 'Post/like-section.html' %} </div>#}
+            {#                        </div>#}
+            {##}
+            {#                    </div>#}
+            {#                    <div class="col s1 l1 ">#}
+            {#                        <div class="right-align">#}
+            {#                            {% if object.author == user %}#}
+            {#                                <span class="card-title activator grey-text text-darken-4"><i#}
+            {#                                        class="material-icons right">more_vert</i></span>#}
+            {#                            {% endif %}#}
+            {#                        </div>#}
+            {##}
+            {#                    </div>#}
+            {#                </div>#}
+            {#                <a class="mr-2" href="{% url 'profile' slug=object.author.username %}">{{ object.author }}</a>#}
+            {#                <p class="right">{{ object.date_posted }}</p>#}
+            {##}
+            {##}
+            {#                <p>#}
+            {#                    {% for tag in tags %}#}
+            {#                        <a href="{% url 'explore-tag' tag %}"> #{{ tag }} </a>#}
+            {#                    {% endfor %}#}
+            {#                </p>#}
+            {#                <p class="article-content">{{ object.content|safe }}</p>#}
+            {#                <p> Views: {{ object.views.count }} </p>#}
+            {#                {% include "Post/poll_detail.html" %}#}
+            {##}
+            {#                {% if object.type == 1 %}#}
+            {#                    <div class="row">#}
+            {#                        <div class="col s6 offset-s3">#}
+            {#                            <video class="center" id="intro" type="video/mp4" controls preload autoplay>#}
+            {#                                <source class="center" src="{{ vpost.video.url }}" type="video/mp4">#}
+            {#                            </video>#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                {% endif %}#}
+            {#            </div>#}
+            {#            <div class="card-reveal">#}
+            {#                {% if object.author == user %}#}
+            {#                    <span class="card-title grey-text text-darken-4">What to do<i#}
+            {#                            class="material-icons right">close</i></span>#}
+            {##}
+            {#                    <a class="btn btn-large orange waves-effect waves-light red"#}
+            {#                       href="{% url 'post-update' object.id %}">Update </a>#}
+            {#                    <a class="btn btn-large red waves-effect waves-light red"#}
+            {#                       href="{% url 'post-delete' object.id %}">#}
+            {#                        Delete </a>#}
+            {##}
+            {#                {% endif %}#}
+            {##}
+            {#            </div>#}
+            {#        </div>#}
+            {#        <div id="commentPart">#}
+            {##}
+            {#            <div id="comment-section">#}
+            {#                <ul class="collection">#}
+            {#                    {% for comment in comments %}#}
+            {#                        {% include 'Post/homePageMembers/commentCardSmall.html' %}#}
+            {#                    {% endfor %}#}
+            {#                </ul>#}
+            {##}
+            {#            </div>#}
+            {#            <form class="post-form" id="{{ object.id }}">#}
+            {##}
+            {#                {% csrf_token %}#}
+            {##}
+            {#                <div class="input-field">#}
+            {#                    <i class="material-icons prefix">message</i>#}
+            {#                    <textarea id="id_content" class="materialize-textarea" cols="20" rows="20"></textarea>#}
+            {#                    <label for="message">Your Message</label>#}
+            {#                </div>#}
+            {##}
+            {#                <div class="input-field center">#}
+            {#                    <button id="sendButton" class="btn" type="submit">Submit</button>#}
+            {#                </div>#}
+            {#            </form>#}
+            {##}
+            {#            <!-- <ul class="collapsible">#}
+            {#            <li>#}
+            {#                <div class="collapsible-header"><i class="material-icons">filter_drama</i>Continue the Conversation#}
+            {#                </div>#}
+            {#                <div class="collapsible-body"> -->#}
+            {##}
+            {##}
+            {#            <!-- </div>#}
+            {#            </li>#}
+            {#        </ul> -->#}
+            {#        </div>#}
+        </div>
 
 
     </div>
 
 
+    <div class=" row">
+        <div class="col s2">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'csgo.jpg' %}">
+                    <span class="card-title">Card Title</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s2">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'csgo.jpg' %}">
+                    <span class="card-title">Card Title</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s2">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'csgo.jpg' %}">
+                    <span class="card-title">Card Title</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s2">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'csgo.jpg' %}">
+                    <span class="card-title">Card Title</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s2">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'csgo.jpg' %}">
+                    <span class="card-title">Card Title</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s2">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{% static 'csgo.jpg' %}">
+                    <span class="card-title">Card Title</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
+                        content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
 
+</div>
 
 
 </div>
+
+
+<script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'materialize.min.js' %}"></script>
+
+</body>
+
+
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('.myLoader-wrapper').fadeOut("slow");
+    });
+    $(document).ready(function () {
+
+        $('.sidenav').sidenav();
+        $('.materialboxed').materialbox();
+        $('.parallax').parallax();
+        $('.tabs').tabs();
+
+        $('.modal').modal();
+        $('.collapsible').collapsible();
+        $('.carousel').carousel();
+        // $('.carousel.carousel-slider').carousel({
+        //     fullWidth: true
+        // });
+        $('.scrollspy').scrollSpy();
+        // $('').edge='right';
+        var elems = document.getElementById('slide-out');
+        var rightNav = M.Sidenav.init(elems, {
+            edge: 'right'
+        });
+
+        // document.getElementById('notificationsButton').addEventListener("click", function() {
+        //     rightNav.open();
+        // });
+
+    });
+</script>
+
+</html>

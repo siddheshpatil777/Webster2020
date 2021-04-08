@@ -150,30 +150,30 @@
                     {#        {% include 'Post/homePageMembers/rightSideBar.html' %}#}
 
                     <!-- Modal Structure -->
-                    <style>
-                        #modal11 {
-                            width: 80vw;
-                            height: 80vh;
-                            overflow-y: scroll;
-                        }
-
-                        @media screen and (min-width: 600px) {
-                            #modal11 {
-                                width: 80vw;
-                                height: 80vh;
-                                overflow-y: hidden;
-                            }
-                        }
-                    </style>
-                    <div id="modal11" class=" modal">
-                        <div id="modal11content" class="modal-content">
-                            <h4>Modal Header</h4>
-                            <p>A bunch of text</p>
-                        </div>
-                        <!-- <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                        </div> -->
-                    </div>
+{#                    <style>#}
+{#                        #modal11 {#}
+{#                            width: 80vw;#}
+{#                            height: 80vh;#}
+{#                            overflow-y: scroll;#}
+{#                        }#}
+{##}
+{#                        @media screen and (min-width: 600px) {#}
+{#                            #modal11 {#}
+{#                                width: 80vw;#}
+{#                                height: 80vh;#}
+{#                                overflow-y: hidden;#}
+{#                            }#}
+{#                        }#}
+{#                    </style>#}
+{#                    <div id="modal11" class=" modal">#}
+{#                        <div id="modal11content" class="modal-content">#}
+{#                            <h4>Modal Header</h4>#}
+{#                            <p>A bunch of text</p>#}
+{#                        </div>#}
+{#                        <!-- <div class="modal-footer">#}
+{#                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>#}
+{#                        </div> -->#}
+{#                    </div>#}
                 </div>
             </div>
         </div>
@@ -206,7 +206,7 @@
                     },
                 });
             });
-            $(document).on("click", ".postCardOpenModal", function (event) {
+            $(document).on("click", ".dsdsdsd", function (event) {
                 console.log(event.target.id);
                 event.preventDefault();
                 let id = event.target.id;
