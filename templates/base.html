@@ -15,14 +15,15 @@
     <link rel="stylesheet" href="{% static 'materialize.min.css' %}">
 
     {% if title %}
-    <title> TWAATCH- {{title}}</title>
+        <title> TWAATCH- {{ title }}</title>
     {% else %}
-    <title> TWAATCH </title>
+        <title> TWAATCH </title>
     {% endif %}
     <style>
-        body,html{
-            overflow-x:auto;
+        body, html {
+            overflow-x: auto;
         }
+
         nav .badge {
             position: relative;
             top: 20px;
@@ -31,49 +32,50 @@
     </style>
     {% include 'snippets/importantShades.html' %}
 
+    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'materialize.min.js' %}"></script>
+
 </head>
-{% include 'snippets/sitePreLoader.html' %}
-<body class="" >
-     <!-- indigo lighten-5 -->
-     {% block navBar %}
-    
-     {% endblock  %}
-       
-    <!-- <div class="row">
-        <div class="col s10 offset-s1"> -->
-            {%block new%}
-            {%endblock%}
+{#{% include 'snippets/sitePreLoader.html' %}#}
+<body class="">
+<!-- indigo lighten-5 -->
+{% block navBar %}
+    =
+{% endblock %}
+
+<!-- <div class="row">
+    <div class="col s10 offset-s1"> -->
+{% block new %}
+{% endblock %}
 
 
-            <div id="slide-out" class="sidenav">
-                {% for post in notifications %}
-                <div class="row">
-                    <div class="col s12 l12">
-                         {% include 'snippets/postCard.html' %}
-                    </div>
-                </div>
-                {% endfor %}
+<div id="slide-out" class="sidenav">
+    {% for post in notifications %}
+        <div class="row">
+            <div class="col s12 l12">
+                {% include 'snippets/postCard.html' %}
             </div>
+        </div>
+    {% endfor %}
+</div>
 
-            {% block content %}
-            {% endblock %}
+{% block content %}
+{% endblock %}
 
 
-            <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
-            <script src="{% static 'materialize.min.js' %}"></script>
-            {%block js%}
-            {%endblock%}
-        <!-- </div>
-    </div> -->
+{% block js %}
+{% endblock %}
+<!-- </div>
+</div> -->
 
 </body>
 
 
 <script type="text/javascript">
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         $('.myLoader-wrapper').fadeOut("slow");
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $('.sidenav').sidenav();
         $('.materialboxed').materialbox();
@@ -82,7 +84,7 @@
 
         $('.modal').modal();
         $('.collapsible').collapsible();
-        $('.carousel').carousel();
+        {#$('.carousel').carousel();#}
         // $('.carousel.carousel-slider').carousel({
         //     fullWidth: true
         // });
